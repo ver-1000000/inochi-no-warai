@@ -18,29 +18,29 @@ const now = () => new Date().toLocaleString('ja-JP', {
 }).replace(/\D/g, '');
 
 const QUERY_NAME_MAP = {
-  '.body :nth-child(1)': '1 / 23',
-  '.body :nth-child(2)': '2 / 23',
-  '.body :nth-child(3)': '3 / 23',
-  '.body :nth-child(4)': '4 / 23',
-  '.body :nth-child(5)': '5 / 23',
-  '.body :nth-child(6)': '6 / 23',
-  '.body :nth-child(7)': '7 / 23',
-  '.body :nth-child(8)': '8 / 23',
-  '.body :nth-child(9)': '9 / 23',
-  '.body :nth-child(10)': '10 / 23',
-  '.body :nth-child(11)': '11 / 23',
-  '.body :nth-child(12)': '12 / 23',
-  '.body :nth-child(13)': '13 / 23',
-  '.body :nth-child(14)': '14 / 23',
-  '.body :nth-child(15)': '15 / 23',
-  '.body :nth-child(16)': '16 / 23',
-  '.body :nth-child(17)': '17 / 23',
-  '.body :nth-child(18)': '18 / 23',
-  '.body :nth-child(19)': '19 / 23',
-  '.body :nth-child(20)': '20 / 23',
-  '.body :nth-child(21)': '21 / 23',
-  '.body :nth-child(22)': '22 / 23',
-  '.body :nth-child(22)': '23 / 23',
+  '1': '1 / 23',
+  '2': '2 / 23',
+  '3': '3 / 23',
+  '4': '4 / 23',
+  '5': '5 / 23',
+  '6': '6 / 23',
+  '7': '7 / 23',
+  '8': '8 / 23',
+  '9': '9 / 23',
+  '10': '10 / 23',
+  '11': '11 / 23',
+  '12': '12 / 23',
+  '13': '13 / 23',
+  '14': '14 / 23',
+  '15': '15 / 23',
+  '16': '16 / 23',
+  '17': '17 / 23',
+  '18': '18 / 23',
+  '19': '19 / 23',
+  '20': '20 / 23',
+  '21': '21 / 23',
+  '22': '22 / 23',
+  '22': '23 / 23',
 };
 
 /**
@@ -72,7 +72,7 @@ class Entity {
   constructor(uniqQuery) {
     this.uniqQuery = uniqQuery;
     this.name      = QUERY_NAME_MAP[uniqQuery] || '';
-    this.element   = document.querySelector(uniqQuery);
+    this.element   = document.querySelector(/\d+/.test(uniqQuery) ? `.body :nth-child(${uniqQuery})` : uniqQuery);
   }
 
   removeClass(...tokens) {
