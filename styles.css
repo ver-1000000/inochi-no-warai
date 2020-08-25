@@ -30,9 +30,9 @@ body {
   outline: none;
 }
 
-.akaino {
-  transform-origin: 50px 40px;
-  transform: translate(206px, 203px) scale(2);
+.body {
+  transform-origin: 90px 100px;
+  transform: translate(171px, 159px) scale(2);
   width: 100px;
   height: 80px;
 }

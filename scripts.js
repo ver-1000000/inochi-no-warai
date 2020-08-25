@@ -18,12 +18,29 @@ const now = () => new Date().toLocaleString('ja-JP', {
 }).replace(/\D/g, '');
 
 const QUERY_NAME_MAP = {
-  '.body': '身体―― Body',
-  '.nose': '鼻―― Nose',
-  '.fang .left': '左のキバ―― Left Fang',
-  '.fang .right': '右のキバ―― Right Fang',
-  '.eye .left': '左目―― Left Eye',
-  '.eye .right': '右目―― Right Eye',
+  '.body :nth-child(1)': '1 / 23',
+  '.body :nth-child(2)': '2 / 23',
+  '.body :nth-child(3)': '3 / 23',
+  '.body :nth-child(4)': '4 / 23',
+  '.body :nth-child(5)': '5 / 23',
+  '.body :nth-child(6)': '6 / 23',
+  '.body :nth-child(7)': '7 / 23',
+  '.body :nth-child(8)': '8 / 23',
+  '.body :nth-child(9)': '9 / 23',
+  '.body :nth-child(10)': '10 / 23',
+  '.body :nth-child(11)': '11 / 23',
+  '.body :nth-child(12)': '12 / 23',
+  '.body :nth-child(13)': '13 / 23',
+  '.body :nth-child(14)': '14 / 23',
+  '.body :nth-child(15)': '15 / 23',
+  '.body :nth-child(16)': '16 / 23',
+  '.body :nth-child(17)': '17 / 23',
+  '.body :nth-child(18)': '18 / 23',
+  '.body :nth-child(19)': '19 / 23',
+  '.body :nth-child(20)': '20 / 23',
+  '.body :nth-child(21)': '21 / 23',
+  '.body :nth-child(22)': '22 / 23',
+  '.body :nth-child(22)': '23 / 23',
 };
 
 /**
@@ -76,7 +93,7 @@ class Entity {
    */
   reset() {
     this.updateStyle('transform', `translate(0px, 0px) scale(1) rotate(0deg)`);
-    this.updateStyle('transform-origin', `50px 40px`);
+    this.updateStyle('transform-origin', `60px 70px`);
   }
 
   restore() {
@@ -143,9 +160,9 @@ class Service {
     const scoreAverages = [
       calculateScoreAverage(value.x,       -64, 64),
       calculateScoreAverage(value.y,       -64, 64),
-      calculateScoreAverage(value.scale,   .5,  5.5),
+      calculateScoreAverage(value.scale,   .8,  1.2),
       calculateScoreAverage(value.rotate,  0,   180, true),
-      calculateScoreAverage(value.originX, 45,  55)
+      calculateScoreAverage(value.originX, 55,  65)
     ];
     return Math.round(average(scoreAverages) * 10) / 10;
   }
@@ -160,7 +177,7 @@ class Service {
     this.restore();
     this.buttons.addClass('hidden');
     svg2png(this.world.element).then(href => {
-      Object.assign(document.createElement('a'), { href, download: `akaino-warai_${now()}.png` }).click();
+      Object.assign(document.createElement('a'), { href, download: `inochi-warai_${now()}.png` }).click();
       close();
     });
   }
@@ -173,15 +190,15 @@ class Service {
     const url        = encodeURIComponent(this.resultURL);
     const score      = this.score;
     const message    =
-      score < 6 ?  'キミは伝説の低級戦士……' :
-      score < 30 ? 'もうなんだかよくわからない！' :
-      score < 50 ? 'こんな朱猪になっちゃった！' :
-      score < 70 ? 'まあまあの出来！' :
-      score < 90 ? 'イイ線いってる！' :
-      score < 95 ? 'ミラクルショット！あと一歩！' :
-                   'こんな完璧な朱猪ってある？？？';
-    const text       = encodeURIComponent(`${score}点！ ${message} 朱猪わらいで朱猪を完成させよう！`);
-    const hashtag    = encodeURIComponent('朱猪わらい');
+      score < 6 ?  'ｼﾃ…… ﾛｼﾃ……' :
+      score < 30 ? '輝いていない' :
+      score < 50 ? 'なぜ？' :
+      score < 70 ? '細胞！' :
+      score < 90 ? '太陽！' :
+      score < 95 ? 'いのち！' :
+                   'いのちの輝き！';
+    const text       = encodeURIComponent(`${score}点！ ${message} キミもいのちを輝かせよう！`);
+    const hashtag    = encodeURIComponent('いのちの輝きわらい');
     const twitterUrl = `//twitter.com/intent/tweet?text=${text}&url=${url}&hashtags=${hashtag}`;
     open(twitterUrl, '_blank', `menubar=no,toolbar=no,resizable=yes,scrollbars=yes,width=710,height=400`);
   }
@@ -279,25 +296,25 @@ class Control {
 
   animate(entity) {
     const update = ({ origin, x, y, scale, rotate })=> {
-      const dOrigin = 50 + Math.abs(origin - 5);       // 45 ~ 55
-      const dScale  = (5 + Math.abs(scale - 50)) / 10; // .5 ~ 5.5
-      const dX      = 64 - Math.abs(128 - x);          // -64 ~ 64
-      const dY      = 64 - Math.abs(128 - y);          // -64 ~ 64
+      const dOrigin = 60 + Math.abs(origin - 5);      // 55 ~ 65
+      const dScale  = (8 + Math.abs(scale - 4)) / 10; // .8 ~ 1.2
+      const dX      = 64 - Math.abs(64 - x);          // -64 ~ 64
+      const dY      = 64 - Math.abs(64 - y);          // -64 ~ 64
       entity.updateStyle('transform', `translate(${dX}px, ${dY}px) scale(${dScale}) rotate(${rotate}deg)`);
-      entity.updateStyle('transform-origin', `${dOrigin}px 40px`);
+      entity.updateStyle('transform-origin', `${dOrigin}px 70px`);
       origin = (origin + 1) % 10;
-      x      = (x + 7) % 256;
-      y      = (y + 3) % 256;
-      scale  = (scale + 1) % 100;
+      x      = (x + 7) % 128;
+      y      = (y + 3) % 128;
+      scale  = (scale + 1) % 8;
       rotate = (rotate + 9) % 360;
       if (entity.animation) { requestAnimationFrame(() => update({ origin, x, y, scale, rotate })); }
     };
     entity.animation = true;
-    update({ origin: random(10), x: random(256), y: random(256), scale: random(100), rotate: random(360) });
+    update({ origin: random(10), x: random(128), y: random(128), scale: random(4), rotate: random(360) });
   };
 };
 
-addEventListener('load', async load => new Service());
+addEventListener('load', async () => new Service());
 
 /**
  * 渡されたSVGのcomputedStyleを計算して、Promise<DataURI>として返却する関数。

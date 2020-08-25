@@ -1,7 +1,7 @@
 {
-  "name": "akaino-warai",
+  "name": "inochi-no-warai",
   "version": "1.0.0",
-  "description": "君だけの面白おかしい朱猪ができたらSNSでシェアしよう！",
+  "description": "いのちの輝き",
   "main": "scripts.js",
   "dependencies": {},
   "devDependencies": {
@@ -21,12 +21,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ver-1000000/akaino-warai.git"
+    "url": "git+https://github.com/ver-1000000/inochi-no-warai.git"
   },
   "author": "@Ver1000000000",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/ver-1000000/akaino-warai/issues"
+    "url": "https://github.com/ver-1000000/inochi-no-warai/issues"
   },
-  "homepage": "https://github.com/ver-1000000/akaino-warai"
+  "homepage": "https://github.com/ver-1000000/inochi-no-warai"
 }
